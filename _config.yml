@@ -4,6 +4,7 @@ remote_theme: "jekyll/minima"
 
 minima:
   skin: dark
+  hide_site_feed_link: true
   social_links:
     - title: "Vivecraft Source on GitHub"
       icon: "github"
