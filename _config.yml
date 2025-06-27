@@ -1,3 +1,9 @@
+title: Vivecraft
+
 remote_theme: "jekyll/minima"
 minima:
   skin: dark
+  social_links:
+    - title: "Vivecraft Source on GitHub"
+      icon: "github"
+      url: "https://github.com/Vivecraft/VivecraftMod"
