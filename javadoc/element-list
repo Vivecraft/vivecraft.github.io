@@ -3,3 +3,4 @@ org.vivecraft.api.client
 org.vivecraft.api.client.data
 org.vivecraft.api.client.event
 org.vivecraft.api.data
+org.vivecraft.api.server

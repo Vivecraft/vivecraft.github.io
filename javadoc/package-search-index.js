@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"org.vivecraft.api"},{"l":"org.vivecraft.api.client"},{"l":"org.vivecraft.api.client.data"},{"l":"org.vivecraft.api.client.event"},{"l":"org.vivecraft.api.data"}];updateSearchResults();
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"org.vivecraft.api"},{"l":"org.vivecraft.api.client"},{"l":"org.vivecraft.api.client.data"},{"l":"org.vivecraft.api.client.event"},{"l":"org.vivecraft.api.data"},{"l":"org.vivecraft.api.server"}];updateSearchResults();
