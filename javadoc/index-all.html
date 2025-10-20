@@ -78,15 +78,30 @@ loadScripts(document, 'script');</script>
 </dd>
 <dt><a href="org/vivecraft/api/data/VRPoseHistory.html#averagePosition(org.vivecraft.api.data.VRBodyPart,int)" class="member-name-link">averagePosition(VRBodyPart, int)</a> - Method in interface org.vivecraft.api.data.<a href="org/vivecraft/api/data/VRPoseHistory.html" title="interface in org.vivecraft.api.data">VRPoseHistory</a></dt>
 <dd>
+<div class="block">Gets the average position in world space between the most recent VRPose in this instance and the oldest VRPose
+ that can be retrieved, going no farther back than <code>maxTicksBack</code>.</div>
+</dd>
+<dt><a href="org/vivecraft/api/data/VRPoseHistory.html#averagePosition(org.vivecraft.api.data.VRBodyPart,int,boolean)" class="member-name-link">averagePosition(VRBodyPart, int, boolean)</a> - Method in interface org.vivecraft.api.data.<a href="org/vivecraft/api/data/VRPoseHistory.html" title="interface in org.vivecraft.api.data">VRPoseHistory</a></dt>
+<dd>
 <div class="block">Gets the average position between the most recent VRPose in this instance and the oldest VRPose that can be
  retrieved, going no farther back than <code>maxTicksBack</code>.</div>
 </dd>
 <dt><a href="org/vivecraft/api/data/VRPoseHistory.html#averageSpeed(org.vivecraft.api.data.VRBodyPart,int)" class="member-name-link">averageSpeed(VRBodyPart, int)</a> - Method in interface org.vivecraft.api.data.<a href="org/vivecraft/api/data/VRPoseHistory.html" title="interface in org.vivecraft.api.data">VRPoseHistory</a></dt>
 <dd>
+<div class="block">Gets the average speed in world space in blocks/tick between the most recent VRPose in this instance and the
+ oldest VRPose that can be retrieved, going no farther back than <code>maxTicksBack</code>.</div>
+</dd>
+<dt><a href="org/vivecraft/api/data/VRPoseHistory.html#averageSpeed(org.vivecraft.api.data.VRBodyPart,int,boolean)" class="member-name-link">averageSpeed(VRBodyPart, int, boolean)</a> - Method in interface org.vivecraft.api.data.<a href="org/vivecraft/api/data/VRPoseHistory.html" title="interface in org.vivecraft.api.data">VRPoseHistory</a></dt>
+<dd>
 <div class="block">Gets the average speed in blocks/tick between the most recent VRPose in this instance and the oldest VRPose
  that can be retrieved, going no farther back than <code>maxTicksBack</code>.</div>
 </dd>
 <dt><a href="org/vivecraft/api/data/VRPoseHistory.html#averageVelocity(org.vivecraft.api.data.VRBodyPart,int)" class="member-name-link">averageVelocity(VRBodyPart, int)</a> - Method in interface org.vivecraft.api.data.<a href="org/vivecraft/api/data/VRPoseHistory.html" title="interface in org.vivecraft.api.data">VRPoseHistory</a></dt>
+<dd>
+<div class="block">Gets the average velocity in world space in blocks/tick between the most recent VRPose in this instance and the
+ oldest VRPose that can be retrieved, going no farther back than <code>maxTicksBack</code>.</div>
+</dd>
+<dt><a href="org/vivecraft/api/data/VRPoseHistory.html#averageVelocity(org.vivecraft.api.data.VRBodyPart,int,boolean)" class="member-name-link">averageVelocity(VRBodyPart, int, boolean)</a> - Method in interface org.vivecraft.api.data.<a href="org/vivecraft/api/data/VRPoseHistory.html" title="interface in org.vivecraft.api.data">VRPoseHistory</a></dt>
 <dd>
 <div class="block">Gets the average velocity in blocks/tick between the most recent VRPose in this instance and the oldest VRPose
  that can be retrieved, going no farther back than <code>maxTicksBack</code>.</div>
@@ -187,6 +202,10 @@ loadScripts(document, 'script');</script>
 </dd>
 <dt><a href="org/vivecraft/api/data/VRPoseHistory.html#getHistoricalData(int)" class="member-name-link">getHistoricalData(int)</a> - Method in interface org.vivecraft.api.data.<a href="org/vivecraft/api/data/VRPoseHistory.html" title="interface in org.vivecraft.api.data">VRPoseHistory</a></dt>
 <dd>
+<div class="block">Gets the pose from <code>ticksBack</code> ticks back in world space, or <code>null</code> if such data isn't available.</div>
+</dd>
+<dt><a href="org/vivecraft/api/data/VRPoseHistory.html#getHistoricalData(int,boolean)" class="member-name-link">getHistoricalData(int, boolean)</a> - Method in interface org.vivecraft.api.data.<a href="org/vivecraft/api/data/VRPoseHistory.html" title="interface in org.vivecraft.api.data">VRPoseHistory</a></dt>
+<dd>
 <div class="block">Gets the pose from <code>ticksBack</code> ticks back, or <code>null</code> if such data isn't available.</div>
 </dd>
 <dt><a href="org/vivecraft/api/client/VRClientAPI.html#getHistoricalVRPoses()" class="member-name-link">getHistoricalVRPoses()</a> - Method in interface org.vivecraft.api.client.<a href="org/vivecraft/api/client/VRClientAPI.html" title="interface in org.vivecraft.api.client">VRClientAPI</a></dt>
@@ -236,6 +255,11 @@ loadScripts(document, 'script');</script>
 <dt><a href="org/vivecraft/api/client/InteractModule.html#getPriority()" class="member-name-link">getPriority()</a> - Method in interface org.vivecraft.api.client.<a href="org/vivecraft/api/client/InteractModule.html" title="interface in org.vivecraft.api.client">InteractModule</a></dt>
 <dd>
 <div class="block">The priority value of a module determines when its <a href="org/vivecraft/api/client/InteractModule.html#isActive(net.minecraft.client.player.LocalPlayer,net.minecraft.world.InteractionHand,net.minecraft.world.phys.Vec3)"><code>InteractModule.isActive(net.minecraft.client.player.LocalPlayer, net.minecraft.world.InteractionHand, net.minecraft.world.phys.Vec3)</code></a> method is called compared to other modules.</div>
+</dd>
+<dt><a href="org/vivecraft/api/client/VRRenderingAPI.html#getRenderPassMatrix(org.vivecraft.api.client.data.RenderPass)" class="member-name-link">getRenderPassMatrix(RenderPass)</a> - Method in interface org.vivecraft.api.client.<a href="org/vivecraft/api/client/VRRenderingAPI.html" title="interface in org.vivecraft.api.client">VRRenderingAPI</a></dt>
+<dd>
+<div class="block">Returns the camera rotation for the given <a href="org/vivecraft/api/client/data/RenderPass.html" title="enum class in org.vivecraft.api.client.data"><code>RenderPass</code></a>
+ For Gui, Mirror or Vanilla passes this returns the regular camera rotation</div>
 </dd>
 <dt><a href="org/vivecraft/api/data/VRBodyPartData.html#getRoll()" class="member-name-link">getRoll()</a> - Method in interface org.vivecraft.api.data.<a href="org/vivecraft/api/data/VRBodyPartData.html" title="interface in org.vivecraft.api.data">VRBodyPartData</a></dt>
 <dd>
@@ -406,6 +430,11 @@ loadScripts(document, 'script');</script>
 <h2 class="title" id="I:N">N</h2>
 <dl class="index">
 <dt><a href="org/vivecraft/api/data/VRPoseHistory.html#netMovement(org.vivecraft.api.data.VRBodyPart,int)" class="member-name-link">netMovement(VRBodyPart, int)</a> - Method in interface org.vivecraft.api.data.<a href="org/vivecraft/api/data/VRPoseHistory.html" title="interface in org.vivecraft.api.data">VRPoseHistory</a></dt>
+<dd>
+<div class="block">Gets the net movement in world space between the most recent VRPose in this instance and the oldest VRPose that
+ can be retrieved, going no farther back than <code>maxTicksBack</code>.</div>
+</dd>
+<dt><a href="org/vivecraft/api/data/VRPoseHistory.html#netMovement(org.vivecraft.api.data.VRBodyPart,int,boolean)" class="member-name-link">netMovement(VRBodyPart, int, boolean)</a> - Method in interface org.vivecraft.api.data.<a href="org/vivecraft/api/data/VRPoseHistory.html" title="interface in org.vivecraft.api.data">VRPoseHistory</a></dt>
 <dd>
 <div class="block">Gets the net movement between the most recent VRPose in this instance and the oldest VRPose that can be
  retrieved, going no farther back than <code>maxTicksBack</code>.</div>
@@ -620,6 +649,10 @@ the order they are declared.</div>
 <dd>
 <div class="block">Returns an array containing the constants of this enum class, in
 the order they are declared.</div>
+</dd>
+<dt><a href="org/vivecraft/api/client/data/RenderPass.html#VANILLA" class="member-name-link">VANILLA</a> - Enum constant in enum class org.vivecraft.api.client.data.<a href="org/vivecraft/api/client/data/RenderPass.html" title="enum class in org.vivecraft.api.client.data">RenderPass</a></dt>
+<dd>
+<div class="block">Renders the Vanilla view</div>
 </dd>
 <dt><a href="org/vivecraft/api/client/event/VivecraftClientRegistrationEvent.html" class="type-name-link" title="interface in org.vivecraft.api.client.event">VivecraftClientRegistrationEvent</a> - Interface in <a href="org/vivecraft/api/client/event/package-summary.html">org.vivecraft.api.client.event</a></dt>
 <dd>

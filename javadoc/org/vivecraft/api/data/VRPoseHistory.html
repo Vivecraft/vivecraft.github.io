@@ -91,7 +91,13 @@ loadScripts(document, 'script');</script>
  In other words, it allows getting movement information of the VR player.
  <br>
  Vivecraft will store data for players going up to 200 ticks into the past. Attempting to retrieve history before
- this far back will throw an <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link"><code>IllegalArgumentException</code></a>.</div>
+ this far back will throw an <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link"><code>IllegalArgumentException</code></a>.
+ <br>
+ Many methods in this class accept the parameter <code>playerPositionRelative</code>. When this is <code>true</code>, all
+ calculations are done relative to the player, while if <code>false</code>, calculations are done in world space. For
+ example, the net movement of a player who moved from (0, 0, 0) to (3, 0, 0) but did NOT move their head, hands, etc.
+ would be (3, 0, 0) if <code>playerPositionRelative</code> is <code>false</code> and would be (0, 0, 0) if
+ <code>playerPositionRelative</code> is <code>true</code>.</div>
 <dl class="notes">
 <dt>Since:</dt>
 <dd>1.3.0</dd>
@@ -104,54 +110,92 @@ loadScripts(document, 'script');</script>
 <section class="method-summary" id="method-summary">
 <h2>Method Summary</h2>
 <div id="method-summary-table">
-<div class="table-tabs" role="tablist" aria-orientation="horizontal"><button id="method-summary-table-tab0" role="tab" aria-selected="true" aria-controls="method-summary-table.tabpanel" tabindex="0" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table', 3)" class="active-table-tab">All Methods</button><button id="method-summary-table-tab2" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab2', 3)" class="table-tab">Instance Methods</button><button id="method-summary-table-tab3" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab3', 3)" class="table-tab">Abstract Methods</button></div>
+<div class="table-tabs" role="tablist" aria-orientation="horizontal"><button id="method-summary-table-tab0" role="tab" aria-selected="true" aria-controls="method-summary-table.tabpanel" tabindex="0" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table', 3)" class="active-table-tab">All Methods</button><button id="method-summary-table-tab2" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab2', 3)" class="table-tab">Instance Methods</button><button id="method-summary-table-tab3" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab3', 3)" class="table-tab">Abstract Methods</button><button id="method-summary-table-tab5" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab5', 3)" class="table-tab">Default Methods</button></div>
 <div id="method-summary-table.tabpanel" role="tabpanel" aria-labelledby="method-summary-table-tab0">
 <div class="summary-table three-column-summary">
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>net.minecraft.world.phys.Vec3</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#averagePosition(org.vivecraft.api.data.VRBodyPart,int)" class="member-name-link">averagePosition</a><wbr>(<a href="VRBodyPart.html" title="enum class in org.vivecraft.api.data">VRBodyPart</a>&nbsp;bodyPart,
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code>default net.minecraft.world.phys.Vec3</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code><a href="#averagePosition(org.vivecraft.api.data.VRBodyPart,int)" class="member-name-link">averagePosition</a><wbr>(<a href="VRBodyPart.html" title="enum class in org.vivecraft.api.data">VRBodyPart</a>&nbsp;bodyPart,
  int&nbsp;maxTicksBack)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5">
+<div class="block">Gets the average position in world space between the most recent VRPose in this instance and the oldest VRPose
+ that can be retrieved, going no farther back than <code>maxTicksBack</code>.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>net.minecraft.world.phys.Vec3</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#averagePosition(org.vivecraft.api.data.VRBodyPart,int,boolean)" class="member-name-link">averagePosition</a><wbr>(<a href="VRBodyPart.html" title="enum class in org.vivecraft.api.data">VRBodyPart</a>&nbsp;bodyPart,
+ int&nbsp;maxTicksBack,
+ boolean&nbsp;playerPositionRelative)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Gets the average position between the most recent VRPose in this instance and the oldest VRPose that can be
  retrieved, going no farther back than <code>maxTicksBack</code>.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>double</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#averageSpeed(org.vivecraft.api.data.VRBodyPart,int)" class="member-name-link">averageSpeed</a><wbr>(<a href="VRBodyPart.html" title="enum class in org.vivecraft.api.data">VRBodyPart</a>&nbsp;bodyPart,
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code>default double</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code><a href="#averageSpeed(org.vivecraft.api.data.VRBodyPart,int)" class="member-name-link">averageSpeed</a><wbr>(<a href="VRBodyPart.html" title="enum class in org.vivecraft.api.data">VRBodyPart</a>&nbsp;bodyPart,
  int&nbsp;maxTicksBack)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5">
+<div class="block">Gets the average speed in world space in blocks/tick between the most recent VRPose in this instance and the
+ oldest VRPose that can be retrieved, going no farther back than <code>maxTicksBack</code>.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>double</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#averageSpeed(org.vivecraft.api.data.VRBodyPart,int,boolean)" class="member-name-link">averageSpeed</a><wbr>(<a href="VRBodyPart.html" title="enum class in org.vivecraft.api.data">VRBodyPart</a>&nbsp;bodyPart,
+ int&nbsp;maxTicksBack,
+ boolean&nbsp;playerPositionRelative)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Gets the average speed in blocks/tick between the most recent VRPose in this instance and the oldest VRPose
  that can be retrieved, going no farther back than <code>maxTicksBack</code>.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>net.minecraft.world.phys.Vec3</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#averageVelocity(org.vivecraft.api.data.VRBodyPart,int)" class="member-name-link">averageVelocity</a><wbr>(<a href="VRBodyPart.html" title="enum class in org.vivecraft.api.data">VRBodyPart</a>&nbsp;bodyPart,
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code>default net.minecraft.world.phys.Vec3</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code><a href="#averageVelocity(org.vivecraft.api.data.VRBodyPart,int)" class="member-name-link">averageVelocity</a><wbr>(<a href="VRBodyPart.html" title="enum class in org.vivecraft.api.data">VRBodyPart</a>&nbsp;bodyPart,
  int&nbsp;maxTicksBack)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5">
+<div class="block">Gets the average velocity in world space in blocks/tick between the most recent VRPose in this instance and the
+ oldest VRPose that can be retrieved, going no farther back than <code>maxTicksBack</code>.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>net.minecraft.world.phys.Vec3</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#averageVelocity(org.vivecraft.api.data.VRBodyPart,int,boolean)" class="member-name-link">averageVelocity</a><wbr>(<a href="VRBodyPart.html" title="enum class in org.vivecraft.api.data">VRBodyPart</a>&nbsp;bodyPart,
+ int&nbsp;maxTicksBack,
+ boolean&nbsp;playerPositionRelative)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Gets the average velocity in blocks/tick between the most recent VRPose in this instance and the oldest VRPose
  that can be retrieved, going no farther back than <code>maxTicksBack</code>.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="VRPose.html" title="interface in org.vivecraft.api.data">VRPose</a>&gt;</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getAllHistoricalData()" class="member-name-link">getAllHistoricalData</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="VRPose.html" title="interface in org.vivecraft.api.data">VRPose</a>&gt;</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getAllHistoricalData()" class="member-name-link">getAllHistoricalData</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Gets a raw list of <a href="VRPose.html" title="interface in org.vivecraft.api.data"><code>VRPose</code></a> instances, with index 0 representing the current tick's pose, 1 representing
  last tick's pose, etc.</div>
 </div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code>default <a href="VRPose.html" title="interface in org.vivecraft.api.data">VRPose</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code><a href="#getHistoricalData(int)" class="member-name-link">getHistoricalData</a><wbr>(int&nbsp;ticksBack)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5">
+<div class="block">Gets the pose from <code>ticksBack</code> ticks back in world space, or <code>null</code> if such data isn't available.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="VRPose.html" title="interface in org.vivecraft.api.data">VRPose</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getHistoricalData(int)" class="member-name-link">getHistoricalData</a><wbr>(int&nbsp;ticksBack)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getHistoricalData(int,boolean)" class="member-name-link">getHistoricalData</a><wbr>(int&nbsp;ticksBack,
+ boolean&nbsp;playerPositionRelative)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Gets the pose from <code>ticksBack</code> ticks back, or <code>null</code> if such data isn't available.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>net.minecraft.world.phys.Vec3</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#netMovement(org.vivecraft.api.data.VRBodyPart,int)" class="member-name-link">netMovement</a><wbr>(<a href="VRBodyPart.html" title="enum class in org.vivecraft.api.data">VRBodyPart</a>&nbsp;bodyPart,
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code>default net.minecraft.world.phys.Vec3</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code><a href="#netMovement(org.vivecraft.api.data.VRBodyPart,int)" class="member-name-link">netMovement</a><wbr>(<a href="VRBodyPart.html" title="enum class in org.vivecraft.api.data">VRBodyPart</a>&nbsp;bodyPart,
  int&nbsp;maxTicksBack)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5">
+<div class="block">Gets the net movement in world space between the most recent VRPose in this instance and the oldest VRPose that
+ can be retrieved, going no farther back than <code>maxTicksBack</code>.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>net.minecraft.world.phys.Vec3</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#netMovement(org.vivecraft.api.data.VRBodyPart,int,boolean)" class="member-name-link">netMovement</a><wbr>(<a href="VRBodyPart.html" title="enum class in org.vivecraft.api.data">VRBodyPart</a>&nbsp;bodyPart,
+ int&nbsp;maxTicksBack,
+ boolean&nbsp;playerPositionRelative)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Gets the net movement between the most recent VRPose in this instance and the oldest VRPose that can be
  retrieved, going no farther back than <code>maxTicksBack</code>.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>int</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#ticksOfHistory()" class="member-name-link">ticksOfHistory</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>int</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#ticksOfHistory()" class="member-name-link">ticksOfHistory</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Gets the number of ticks, historical data is currently available for.</div>
 </div>
 </div>
@@ -199,9 +243,9 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="getHistoricalData(int)">
 <h3>getHistoricalData</h3>
-<div class="member-signature"><span class="return-type"><a href="VRPose.html" title="interface in org.vivecraft.api.data">VRPose</a></span>&nbsp;<span class="element-name">getHistoricalData</span><wbr><span class="parameters">(int&nbsp;ticksBack)</span>
-                  throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></span></div>
-<div class="block">Gets the pose from <code>ticksBack</code> ticks back, or <code>null</code> if such data isn't available.</div>
+<div class="member-signature"><span class="modifiers">default</span>&nbsp;<span class="return-type"><a href="VRPose.html" title="interface in org.vivecraft.api.data">VRPose</a></span>&nbsp;<span class="element-name">getHistoricalData</span><wbr><span class="parameters">(int&nbsp;ticksBack)</span>
+                          throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></span></div>
+<div class="block">Gets the pose from <code>ticksBack</code> ticks back in world space, or <code>null</code> if such data isn't available.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>ticksBack</code> - Ticks back to retrieve data from.</dd>
@@ -215,14 +259,34 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
+<section class="detail" id="getHistoricalData(int,boolean)">
+<h3>getHistoricalData</h3>
+<div class="member-signature"><span class="return-type"><a href="VRPose.html" title="interface in org.vivecraft.api.data">VRPose</a></span>&nbsp;<span class="element-name">getHistoricalData</span><wbr><span class="parameters">(int&nbsp;ticksBack,
+ boolean&nbsp;playerPositionRelative)</span>
+                  throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></span></div>
+<div class="block">Gets the pose from <code>ticksBack</code> ticks back, or <code>null</code> if such data isn't available.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>ticksBack</code> - Ticks back to retrieve data from.</dd>
+<dd><code>playerPositionRelative</code> - Whether to get the historical data with position relative to the player's position.</dd>
+<dt>Returns:</dt>
+<dd>A <a href="VRPose.html" title="interface in org.vivecraft.api.data"><code>VRPose</code></a> instance from <code>ticksBack</code> ticks ago, or <code>null</code> if that data isn't available.</dd>
+<dt>Throws:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - Thrown when <code>ticksBack</code> is outside the range [0,200].</dd>
+<dt>Since:</dt>
+<dd>1.3.3</dd>
+</dl>
+</section>
+</li>
+<li>
 <section class="detail" id="netMovement(org.vivecraft.api.data.VRBodyPart,int)">
 <h3>netMovement</h3>
 <div class="member-signature"><span class="annotations">@Nullable
-</span><span class="return-type">net.minecraft.world.phys.Vec3</span>&nbsp;<span class="element-name">netMovement</span><wbr><span class="parameters">(<a href="VRBodyPart.html" title="enum class in org.vivecraft.api.data">VRBodyPart</a>&nbsp;bodyPart,
+</span><span class="modifiers">default</span>&nbsp;<span class="return-type">net.minecraft.world.phys.Vec3</span>&nbsp;<span class="element-name">netMovement</span><wbr><span class="parameters">(<a href="VRBodyPart.html" title="enum class in org.vivecraft.api.data">VRBodyPart</a>&nbsp;bodyPart,
  int&nbsp;maxTicksBack)</span>
-                                   throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></span></div>
-<div class="block">Gets the net movement between the most recent VRPose in this instance and the oldest VRPose that can be
- retrieved, going no farther back than <code>maxTicksBack</code>.</div>
+                                           throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></span></div>
+<div class="block">Gets the net movement in world space between the most recent VRPose in this instance and the oldest VRPose that
+ can be retrieved, going no farther back than <code>maxTicksBack</code>.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>bodyPart</code> - The body part to get the net movement for.</dd>
@@ -239,14 +303,40 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
+<section class="detail" id="netMovement(org.vivecraft.api.data.VRBodyPart,int,boolean)">
+<h3>netMovement</h3>
+<div class="member-signature"><span class="annotations">@Nullable
+</span><span class="return-type">net.minecraft.world.phys.Vec3</span>&nbsp;<span class="element-name">netMovement</span><wbr><span class="parameters">(<a href="VRBodyPart.html" title="enum class in org.vivecraft.api.data">VRBodyPart</a>&nbsp;bodyPart,
+ int&nbsp;maxTicksBack,
+ boolean&nbsp;playerPositionRelative)</span>
+                                   throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></span></div>
+<div class="block">Gets the net movement between the most recent VRPose in this instance and the oldest VRPose that can be
+ retrieved, going no farther back than <code>maxTicksBack</code>.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>bodyPart</code> - The body part to get the net movement for.</dd>
+<dd><code>maxTicksBack</code> - The maximum number of ticks back to compare the most recent data with.</dd>
+<dd><code>playerPositionRelative</code> - Whether net movement should be calculated relative to the player position.</dd>
+<dt>Returns:</dt>
+<dd>The aforementioned net movement. Note that this will return zero change on all axes if only zero ticks
+ can be looked back. Will be <code>null</code> if the body part requested isn't available.</dd>
+<dt>Throws:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - Thrown when <code>maxTicksBack</code> is outside the range [0,200] or an invalid
+                                  <code>bodyPart</code> is supplied.</dd>
+<dt>Since:</dt>
+<dd>1.3.3</dd>
+</dl>
+</section>
+</li>
+<li>
 <section class="detail" id="averageVelocity(org.vivecraft.api.data.VRBodyPart,int)">
 <h3>averageVelocity</h3>
 <div class="member-signature"><span class="annotations">@Nullable
-</span><span class="return-type">net.minecraft.world.phys.Vec3</span>&nbsp;<span class="element-name">averageVelocity</span><wbr><span class="parameters">(<a href="VRBodyPart.html" title="enum class in org.vivecraft.api.data">VRBodyPart</a>&nbsp;bodyPart,
+</span><span class="modifiers">default</span>&nbsp;<span class="return-type">net.minecraft.world.phys.Vec3</span>&nbsp;<span class="element-name">averageVelocity</span><wbr><span class="parameters">(<a href="VRBodyPart.html" title="enum class in org.vivecraft.api.data">VRBodyPart</a>&nbsp;bodyPart,
  int&nbsp;maxTicksBack)</span>
-                                       throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></span></div>
-<div class="block">Gets the average velocity in blocks/tick between the most recent VRPose in this instance and the oldest VRPose
- that can be retrieved, going no farther back than <code>maxTicksBack</code>.</div>
+                                               throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></span></div>
+<div class="block">Gets the average velocity in world space in blocks/tick between the most recent VRPose in this instance and the
+ oldest VRPose that can be retrieved, going no farther back than <code>maxTicksBack</code>.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>bodyPart</code> - The body part to get the average velocity for.</dd>
@@ -263,13 +353,39 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
+<section class="detail" id="averageVelocity(org.vivecraft.api.data.VRBodyPart,int,boolean)">
+<h3>averageVelocity</h3>
+<div class="member-signature"><span class="annotations">@Nullable
+</span><span class="return-type">net.minecraft.world.phys.Vec3</span>&nbsp;<span class="element-name">averageVelocity</span><wbr><span class="parameters">(<a href="VRBodyPart.html" title="enum class in org.vivecraft.api.data">VRBodyPart</a>&nbsp;bodyPart,
+ int&nbsp;maxTicksBack,
+ boolean&nbsp;playerPositionRelative)</span>
+                                       throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></span></div>
+<div class="block">Gets the average velocity in blocks/tick between the most recent VRPose in this instance and the oldest VRPose
+ that can be retrieved, going no farther back than <code>maxTicksBack</code>.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>bodyPart</code> - The body part to get the average velocity for.</dd>
+<dd><code>maxTicksBack</code> - The maximum number of ticks back to calculate velocity with.</dd>
+<dd><code>playerPositionRelative</code> - Whether velocity should be calculated to the player position.</dd>
+<dt>Returns:</dt>
+<dd>The aforementioned average velocity on each axis. Note that this will return zero velocity on all axes
+ if only zero ticks can be looked back. Will be <code>null</code> if the body part requested isn't available.</dd>
+<dt>Throws:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - Thrown when <code>maxTicksBack</code> is outside the range [0,200] or an invalid
+                                  <code>bodyPart</code> is supplied.</dd>
+<dt>Since:</dt>
+<dd>1.3.3</dd>
+</dl>
+</section>
+</li>
+<li>
 <section class="detail" id="averageSpeed(org.vivecraft.api.data.VRBodyPart,int)">
 <h3>averageSpeed</h3>
-<div class="member-signature"><span class="return-type">double</span>&nbsp;<span class="element-name">averageSpeed</span><wbr><span class="parameters">(<a href="VRBodyPart.html" title="enum class in org.vivecraft.api.data">VRBodyPart</a>&nbsp;bodyPart,
+<div class="member-signature"><span class="modifiers">default</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">averageSpeed</span><wbr><span class="parameters">(<a href="VRBodyPart.html" title="enum class in org.vivecraft.api.data">VRBodyPart</a>&nbsp;bodyPart,
  int&nbsp;maxTicksBack)</span>
-             throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></span></div>
-<div class="block">Gets the average speed in blocks/tick between the most recent VRPose in this instance and the oldest VRPose
- that can be retrieved, going no farther back than <code>maxTicksBack</code>.</div>
+                     throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></span></div>
+<div class="block">Gets the average speed in world space in blocks/tick between the most recent VRPose in this instance and the
+ oldest VRPose that can be retrieved, going no farther back than <code>maxTicksBack</code>.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>bodyPart</code> - The body part to get the average speed for.</dd>
@@ -286,14 +402,39 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
+<section class="detail" id="averageSpeed(org.vivecraft.api.data.VRBodyPart,int,boolean)">
+<h3>averageSpeed</h3>
+<div class="member-signature"><span class="return-type">double</span>&nbsp;<span class="element-name">averageSpeed</span><wbr><span class="parameters">(<a href="VRBodyPart.html" title="enum class in org.vivecraft.api.data">VRBodyPart</a>&nbsp;bodyPart,
+ int&nbsp;maxTicksBack,
+ boolean&nbsp;playerPositionRelative)</span>
+             throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></span></div>
+<div class="block">Gets the average speed in blocks/tick between the most recent VRPose in this instance and the oldest VRPose
+ that can be retrieved, going no farther back than <code>maxTicksBack</code>.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>bodyPart</code> - The body part to get the average speed for.</dd>
+<dd><code>maxTicksBack</code> - The maximum number of ticks back to calculate speed with.</dd>
+<dd><code>playerPositionRelative</code> - Whether the speed should be calculated relative to the player position.</dd>
+<dt>Returns:</dt>
+<dd>The aforementioned average speed on each axis. Note that this will return zero speed if only zero ticks
+ can be looked back, or if the body part requested isn't available.</dd>
+<dt>Throws:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - Thrown when <code>maxTicksBack</code> is outside the range [0,200] or an invalid
+                                  <code>bodyPart</code> is supplied.</dd>
+<dt>Since:</dt>
+<dd>1.3.3</dd>
+</dl>
+</section>
+</li>
+<li>
 <section class="detail" id="averagePosition(org.vivecraft.api.data.VRBodyPart,int)">
 <h3>averagePosition</h3>
 <div class="member-signature"><span class="annotations">@Nullable
-</span><span class="return-type">net.minecraft.world.phys.Vec3</span>&nbsp;<span class="element-name">averagePosition</span><wbr><span class="parameters">(<a href="VRBodyPart.html" title="enum class in org.vivecraft.api.data">VRBodyPart</a>&nbsp;bodyPart,
+</span><span class="modifiers">default</span>&nbsp;<span class="return-type">net.minecraft.world.phys.Vec3</span>&nbsp;<span class="element-name">averagePosition</span><wbr><span class="parameters">(<a href="VRBodyPart.html" title="enum class in org.vivecraft.api.data">VRBodyPart</a>&nbsp;bodyPart,
  int&nbsp;maxTicksBack)</span>
-                                       throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></span></div>
-<div class="block">Gets the average position between the most recent VRPose in this instance and the oldest VRPose that can be
- retrieved, going no farther back than <code>maxTicksBack</code>.</div>
+                                               throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></span></div>
+<div class="block">Gets the average position in world space between the most recent VRPose in this instance and the oldest VRPose
+ that can be retrieved, going no farther back than <code>maxTicksBack</code>.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>bodyPart</code> - The body part to get the average position for.</dd>
@@ -306,6 +447,32 @@ loadScripts(document, 'script');</script>
                                   <code>bodyPart</code> is supplied.</dd>
 <dt>Since:</dt>
 <dd>1.3.0</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="averagePosition(org.vivecraft.api.data.VRBodyPart,int,boolean)">
+<h3>averagePosition</h3>
+<div class="member-signature"><span class="annotations">@Nullable
+</span><span class="return-type">net.minecraft.world.phys.Vec3</span>&nbsp;<span class="element-name">averagePosition</span><wbr><span class="parameters">(<a href="VRBodyPart.html" title="enum class in org.vivecraft.api.data">VRBodyPart</a>&nbsp;bodyPart,
+ int&nbsp;maxTicksBack,
+ boolean&nbsp;playerPositionRelative)</span>
+                                       throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></span></div>
+<div class="block">Gets the average position between the most recent VRPose in this instance and the oldest VRPose that can be
+ retrieved, going no farther back than <code>maxTicksBack</code>.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>bodyPart</code> - The body part to get the average position for.</dd>
+<dd><code>maxTicksBack</code> - The maximum number of ticks back to calculate the position with.</dd>
+<dd><code>playerPositionRelative</code> - Whether the positions should be relative to the player's position.</dd>
+<dt>Returns:</dt>
+<dd>The aforementioned average position. Note that this will return the current position if only zero ticks
+ can be looked back. Will be <code>null</code> if the body part requested isn't available.</dd>
+<dt>Throws:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - Thrown when <code>maxTicksBack</code> is outside the range [0,200] or an invalid
+                                  <code>bodyPart</code> is supplied.</dd>
+<dt>Since:</dt>
+<dd>1.3.3</dd>
 </dl>
 </section>
 </li>

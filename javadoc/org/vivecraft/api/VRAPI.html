@@ -174,7 +174,8 @@ loadScripts(document, 'script');</script>
 <div class="member-signature"><span class="annotations">@Nullable
 </span><span class="return-type"><a href="data/VRPose.html" title="interface in org.vivecraft.api.data">VRPose</a></span>&nbsp;<span class="element-name">getVRPose</span><wbr><span class="parameters">(net.minecraft.world.entity.player.Player&nbsp;player)</span></div>
 <div class="block">Returns the VR pose for the given player. Will return <code>null</code> if the player isn't in VR,
- or if being called from the client and the client has yet to receive any data for the player.</div>
+ or if no data for the player has been received yet. The VRPose can still be <code>null</code> if
+ <a href="#isVRPlayer(net.minecraft.world.entity.player.Player)"><code>isVRPlayer(Player)</code></a> returned true, since those two properties are independent of each other.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>player</code> - Player to get the VR pose of.</dd>
